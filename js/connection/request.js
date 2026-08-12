@@ -147,8 +147,16 @@ export const cacheWrapper = (cacheName) => {
             return null;
         }
 
-        const maxAge = res.headers.get('Cache-Control').match(/max-age=(\d+)/)[1];
-        const expTime = Date.parse(res.headers.get('Date')) + (parseInt(maxAge) * 1000);
+        const cacheControl = res.headers.get('Cache-Control');
+        const match = cacheControl ? cacheControl.match(/max-age=(\d+)/) : null;
+        if (!match) {
+            return null;
+        }
+
+        const maxAge = match[1];
+        const dateHeader = res.headers.get('Date');
+        const baseDate = dateHeader ? Date.parse(dateHeader) : Date.now();
+        const expTime = baseDate + (parseInt(maxAge, 10) * 1000);
 
         return Date.now() > expTime ? null : res;
     });

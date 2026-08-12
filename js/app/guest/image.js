@@ -62,10 +62,12 @@ export const image = (() => {
     const getByFetch = (el) => {
         urlCache.push({
             url: el.getAttribute('data-src'),
-            res: (url) => appendImage(el, url),
+            res: (url) => appendImage(el, url).catch(() => {
+                appendImage(el, el.src).catch(() => progress.complete('image', true));
+            }),
             rej: (err) => {
                 console.warn('Failed to load image, using fallback:', el.getAttribute('data-src'), err);
-                appendImage(el, el.src).catch(() => progress.invalid('image'));
+                appendImage(el, el.src).catch(() => progress.complete('image', true));
             },
         });
     };

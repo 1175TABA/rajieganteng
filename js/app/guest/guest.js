@@ -357,7 +357,7 @@ export const guest = (() => {
 
         window.addEventListener('resize', util.debounce(slide));
         document.addEventListener('undangan.progress.done', () => booting());
-        document.addEventListener('hide.bs.modal', () => document.activeElement?.blur());
+        document.addEventListener('undangan.progress.invalid', () => booting());
         document.getElementById('button-modal-download').addEventListener('click', (e) => {
             img.download(e.currentTarget.getAttribute('data-src'));
         });
@@ -397,7 +397,16 @@ export const guest = (() => {
                     .then(() => progress.complete('comment'))
                     .catch(() => progress.invalid('comment'));
 
-            }).catch(() => progress.invalid('config'));
+            }).catch(() => {
+                progress.invalid('config');
+                vid.load();
+                img.load();
+                aud.load();
+                lib.load({ confetti: document.body.getAttribute('data-confetti') === 'true' });
+                comment.show()
+                    .then(() => progress.complete('comment'))
+                    .catch(() => progress.invalid('comment'));
+            });
         }
     };
 
