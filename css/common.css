@@ -1,0 +1,172 @@
+/* ==========================================================================
+   Common Style & Design System (Tema & Tampilan Umum)
+   Sistem gaya umum untuk mode terang/gelap, tombol, transisi, dan variabel Bootstrap.
+   ========================================================================== */
+
+/* Variabel Custom Design System & Tipografi */
+:root {
+    --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-script: 'Great Vibes', cursive;
+    --font-arabic: 'Noto Naskh Arabic', 'Traditional Arabic', serif;
+}
+
+/* Penyesuaian Perilaku Scroll & Font Dasar */
+html {
+    scroll-behavior: smooth !important; /* Efek scroll halus saat navigasi anchor */
+    width: 100vw !important;
+}
+
+body {
+    font-family: var(--font-sans) !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow-x: hidden !important; /* Mencegah horizontal scrollbar melimpah */
+}
+
+/* Utilitas Tipografi Penyelaras Letak & Jarak */
+.letter-spacing-1 {
+    letter-spacing: 0.05em !important;
+}
+
+.letter-spacing-2 {
+    letter-spacing: 0.1em !important;
+}
+
+.letter-spacing-3 {
+    letter-spacing: 0.18em !important;
+}
+
+.line-height-sm {
+    line-height: 1.25 !important;
+}
+
+.line-height-normal {
+    line-height: 1.5 !important;
+}
+
+.line-height-loose {
+    line-height: 1.8 !important;
+}
+
+
+i {
+    width: auto !important;
+}
+
+/* Transisi Halus Perubahan Warna Latar Belakang (Tema) */
+body,
+div,
+nav,
+svg,
+section {
+    will-change: background-color;
+    transition: background-color 350ms ease;
+}
+
+svg>path {
+    will-change: color;
+    transition: color 350ms ease;
+}
+
+/* Navbar Efek Glassmorphism (Backdrop Blur) */
+html[data-bs-theme="dark"] .navbar {
+    background-color: rgba(var(--bs-dark-rgb), 0.75) !important;
+    backdrop-filter: blur(0.5rem);
+}
+
+html[data-bs-theme="light"] .navbar {
+    background-color: rgba(var(--bs-light-rgb), 0.75) !important;
+    backdrop-filter: blur(0.5rem);
+}
+
+/* Warna Teks Otomatis Berdasarkan Tema */
+html[data-bs-theme="dark"] .text-theme-auto {
+    color: rgb(var(--bs-light-rgb));
+}
+
+html[data-bs-theme="light"] .text-theme-auto {
+    color: rgb(var(--bs-dark-rgb));
+}
+
+/* Warna Link Navigasi */
+html[data-bs-theme="dark"] .nav-link {
+    color: rgba(var(--bs-white-rgb), 0.5);
+}
+
+html[data-bs-theme="light"] .nav-link {
+    color: rgba(var(--bs-black-rgb), 0.5);
+}
+
+/* Warna Latar Belakang Komponen Otomatis */
+html[data-bs-theme="dark"] .bg-theme-auto {
+    background-color: var(--bs-gray-800);
+}
+
+html[data-bs-theme="light"] .bg-theme-auto {
+    background-color: var(--bs-gray-100);
+}
+
+/* Custom Tombol Outline Responsif Tema (Dark Mode) */
+html[data-bs-theme="dark"] .btn-outline-auto {
+    --bs-btn-color: var(--bs-light);
+    --bs-btn-border-color: var(--bs-light);
+    --bs-btn-hover-color: var(--bs-black);
+    --bs-btn-hover-bg: var(--bs-light);
+    --bs-btn-hover-border-color: var(--bs-light);
+    --bs-btn-focus-shadow-rgb: var(--bs-light-rgb);
+    --bs-btn-active-color: var(--bs-black);
+    --bs-btn-active-bg: var(--bs-light);
+    --bs-btn-active-border-color: var(--bs-light);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: var(--bs-light);
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: var(--bs-light);
+    --bs-gradient: none;
+}
+
+/* Custom Tombol Outline Responsif Tema (Light Mode) */
+html[data-bs-theme="light"] .btn-outline-auto {
+    --bs-btn-color: var(--bs-dark);
+    --bs-btn-border-color: var(--bs-dark);
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: var(--bs-dark);
+    --bs-btn-hover-border-color: var(--bs-dark);
+    --bs-btn-focus-shadow-rgb: var(--bs-dark-rgb);
+    --bs-btn-active-color: var(--bs-white);
+    --bs-btn-active-bg: var(--bs-dark);
+    --bs-btn-active-border-color: var(--bs-dark);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: var(--bs-dark);
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: var(--bs-dark);
+    --bs-gradient: none;
+}
+
+/* Lapisan Overlay Transparan dengan Blur */
+html[data-bs-theme="dark"] .bg-overlay-auto {
+    background-color: rgba(var(--bs-black-rgb), 0.5);
+    backdrop-filter: blur(0.25rem);
+}
+
+html[data-bs-theme="light"] .bg-overlay-auto {
+    background-color: rgba(var(--bs-white-rgb), 0.5);
+    backdrop-filter: blur(0.25rem);
+}
+
+/* Area Hover Tombol Aksi */
+.hover-area {
+    display: none;
+    cursor: pointer;
+}
+
+.hover-wrapper:hover .hover-area {
+    display: flex;
+}
+
+/* Batas Tinggi Gambar GIF Sticker */
+.gif-image {
+    max-height: 10rem;
+}

@@ -1,0 +1,155 @@
+/* ==========================================================================
+   Guest Page Custom Styles (Gaya Tampilan Halaman Tamu)
+   Pengaturan font estetika (Great Vibes, Cormorant Garamond, Noto Naskh Arabic),
+   gambar melingkar (crop), efek loading overlay, latar belakang gradient & SVG.
+   ========================================================================== */
+
+@import url("common.css?v=1.2");
+@import url("animation.css");
+
+/* Menyembunyikan Scrollbar Bawaan Browser */
+html {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.with-scrollbar {
+    scrollbar-width: auto !important;
+    -ms-overflow-style: auto !important;
+}
+
+/* Pengaturan Kelas Tipografi Font Khusus & Penyesuaian Hierarki Visual */
+.font-esthetic {
+    font-family: var(--font-script), 'Great Vibes', cursive !important;
+    font-weight: 400 !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0.02em !important;
+}
+
+.font-serif {
+    font-family: var(--font-serif), 'Cormorant Garamond', Georgia, serif !important;
+    line-height: 1.45 !important;
+}
+
+.font-arabic {
+    font-family: var(--font-arabic), 'Noto Naskh Arabic', serif !important;
+    line-height: 2.2 !important; /* Memberikan ruang leluasa agar harakat tidak bertabrakan */
+    direction: rtl;
+    font-weight: 400;
+}
+
+/* Penyesuaian Skala Font Judul Responsif berdasarkan Layar */
+@media screen and (max-width: 576px) {
+    .font-esthetic {
+        font-size: clamp(2rem, 8vw, 2.75rem) !important;
+    }
+
+    .font-arabic {
+        font-size: clamp(1.4rem, 6vw, 1.85rem) !important;
+        line-height: 2.1 !important;
+    }
+}
+
+
+/* Gambar Profil Mempelai Melingkar (Center Crop) */
+.img-center-crop {
+    width: 13rem;
+    height: 13rem;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+/* Tombol Transparan Ber-efek Glassmorphism (Blur) */
+html[data-bs-theme="dark"] .btn-transparent {
+    background-color: rgba(var(--bs-dark-rgb), 0.5) !important;
+    backdrop-filter: blur(0.5rem);
+}
+
+html[data-bs-theme="light"] .btn-transparent {
+    background-color: rgba(var(--bs-light-rgb), 0.5) !important;
+    backdrop-filter: blur(0.5rem);
+}
+
+/* Layar Layar Pemuatan Utama (Full Screen Preloader Overlay) */
+.loading-page {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1056;
+}
+
+/* Pemetaan Warna Ornamen SVG Tema */
+html[data-bs-theme="light"] .color-theme-svg {
+    color: rgb(255, 255, 255);
+    background-color: var(--bs-light);
+}
+
+html[data-bs-theme="dark"] .color-theme-svg {
+    color: rgb(0, 0, 0);
+    background-color: var(--bs-dark);
+}
+
+/* Utilitas Latar Belakang Terang/Gelap Fleksibel */
+html[data-bs-theme="light"] .bg-light-dark {
+    background-color: rgb(var(--bs-light-rgb));
+}
+
+html[data-bs-theme="dark"] .bg-light-dark {
+    background-color: rgb(var(--bs-dark-rgb));
+}
+
+html[data-bs-theme="light"] .bg-white-black {
+    background-color: rgb(var(--bs-white-rgb));
+}
+
+html[data-bs-theme="dark"] .bg-white-black {
+    background-color: rgb(var(--bs-black-rgb));
+}
+
+/* Masking Mask Gradient Gambar Sampul Sampul Utama */
+.bg-cover-home {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mask-image: linear-gradient(0.5turn, transparent, black 40%, black 60%, transparent);
+}
+
+/* Ukuran Lebar Progress Bar Loading pada Berbagai Ukuran Layar */
+.width-loading {
+    width: 25%;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 992px) {
+    .width-loading {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .width-loading {
+        width: 75%;
+    }
+}
+
+/* Pengaturan Rendering Ornamen SVG Dekoratif */
+svg {
+    display: block;
+    line-height: 0;
+    shape-rendering: geometricPrecision;
+    backface-visibility: hidden;
+}
+
+.svg-wrapper {
+    overflow: hidden !important;
+    transform: translateZ(0) !important;
+}
+
+.no-gap-bottom {
+    margin-bottom: -0.75rem !important;
+}
